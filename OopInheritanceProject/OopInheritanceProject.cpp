@@ -1,6 +1,7 @@
 ﻿// Inheritance
 //
 #include <iostream>
+#include <string>
 
 class Point
 {
@@ -24,9 +25,10 @@ public:
     int& X() { return x; }
     int& Y() { return y; }
 
-    void Print()
+    std::string ToString()
     {
-        std::cout << "x: " << x << ", y: " << y << "\n";
+        return "(" + std::to_string(x) + ","
+            + std::to_string(y) + ")";
     }
 };
 
@@ -35,15 +37,17 @@ class Line : public Point
     int dx;
     int dy;
 public:
-    Line()
+    Line() : Point(), dx{}, dy{}
     {
-        x = 0;
-        y = 0;
-        dx = 0;
-        dy = 0;
-
         std::cout << this << " Line construct\n";
     }
+
+    Line(int x, int y, int dx, int dy)
+        : Point(x, y), dx{ dx }, dy{ dy }
+    {
+        std::cout << this << " Line construct\n";
+    }
+
     ~Line()
     {
         std::cout << this << " Line destruct\n";
@@ -51,14 +55,43 @@ public:
 
     int& DX() { return dx; }
     int& DY() { return dy; }
+
+    std::string ToString()
+    {
+        return Point::ToString() + " - ("
+            + std::to_string(x + dx) + ", "
+            + std::to_string(y + dy) + ")";
+    }
 };
 
 int main()
 {
-    Line* ptrLine = new Line();
-    
-    Point* ptrPoint = new Line();
+    /*Point* ptrPoint = new Point(7, 9);
+    std::cout << ptrPoint->ToString() << "\n";
 
-    ((Line*)ptrPoint)->DX();
+    Line* ptrLine = new Line(2, 5, 10, 21);
+    ptrLine->X() = 3;
+    ptrLine->DY() = 25;
     
+    std::cout << ptrLine->ToString() << "\n";*/
+    
+    /*Point abase(5, 7);
+    Line aline(1, 2, 3, 4);
+
+    std::cout << "\n\n";*/
+
+    Point* point = new Point(1, 2);
+    Line* line = new Line(1, 2, 3, 4);
+
+    std::cout << "\n\n";
+
+    delete point;
+    delete line;
+    
+
+    /*Point* base = new Point(5, 7);
+    std::cout << base->ToString() << "\n";
+
+    base = new Line(3, 1, 7, 5);
+    std::cout << base->ToString() << "\n";*/
 }
