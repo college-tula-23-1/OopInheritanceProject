@@ -2,6 +2,7 @@
 //
 #include <iostream>
 #include <string>
+#include "Shape.h"
 
 class Point
 {
@@ -75,23 +76,33 @@ int main()
     
     std::cout << ptrLine->ToString() << "\n";*/
     
-    /*Point abase(5, 7);
-    Line aline(1, 2, 3, 4);
+    ///*Point abase(5, 7);
+    //Line aline(1, 2, 3, 4);
+    //std::cout << "\n\n";*/
+    //Point* point = new Line(1, 2, 3, 4);
+    //Line* line = new Line(1, 2, 3, 4);
+    //std::cout << "\n\n";
+    //delete point;
+    //delete line;
+    //
+    ///*Point* base = new Point(5, 7);
+    //std::cout << base->ToString() << "\n";
+    //base = new Line(3, 1, 7, 5);
+    //std::cout << base->ToString() << "\n";*/
 
-    std::cout << "\n\n";*/
+    int count = 3;
+    Shape** shapes = new Shape*[count];
 
-    Point* point = new Point(1, 2);
-    Line* line = new Line(1, 2, 3, 4);
-
-    std::cout << "\n\n";
-
-    delete point;
-    delete line;
+    shapes[0] = new Rectangle(10, 20);
+    shapes[1] = new Circle(10);
+    shapes[2] = new Rectangle(5, 30);
     
+    double areas = 0;
+    for (int i{}; i < count; i++)
+        //areas += shapes[i]->Area();
+        std::cout << shapes[i]->Area() << "\n";
+    
+    Shape* shape = new Rectangle(2, 3);
 
-    /*Point* base = new Point(5, 7);
-    std::cout << base->ToString() << "\n";
 
-    base = new Line(3, 1, 7, 5);
-    std::cout << base->ToString() << "\n";*/
 }
